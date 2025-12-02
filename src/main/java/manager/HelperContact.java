@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class HelperContact extends HelperBase{
     public HelperContact(WebDriver wd) {
@@ -39,4 +40,27 @@ public class HelperContact extends HelperBase{
     }
 
 
+    public boolean isContactAddedByName(String name) {
+        List<WebElement> list = wd.findElements(By.cssSelector("h2"));
+        for (WebElement el:list) {
+            if(el.getText().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isContactAddedByPhone(String phone) {
+        List<WebElement> list = wd.findElements(By.cssSelector("h3"));
+        for (WebElement el:list) {
+            if(el.getText().equals(phone)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isAddNewContactStillDisplayed() {
+        return isElementPresent(By.cssSelector("a.active[href ='/add']"));
+    }
 }
