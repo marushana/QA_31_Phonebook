@@ -1,6 +1,7 @@
 package tests;
 
 import models.User;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -19,6 +20,7 @@ public class RemoveContactTests extends TestBase{
     @Test
     public void removeFirstContact(){
         //assert size contact list less by one
+        Assert.assertEquals(app.getHelperContact().removeOneContact(), 1);
     }
 
     @Test

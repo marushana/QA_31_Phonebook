@@ -11,6 +11,7 @@ import java.time.Duration;
 import java.util.List;
 
 public class HelperContact extends HelperBase{
+
     public HelperContact(WebDriver wd) {
         super(wd);
     }
@@ -64,4 +65,23 @@ public class HelperContact extends HelperBase{
         return isElementPresent(By.cssSelector("a.active[href ='/add']"));
     }
 
+
+    public int removeOneContact() {
+        int before = countOfContacts();
+        logger.info("number of contacts before remove is" + before);
+        removeContact();
+        int after = countOfContacts();
+        logger.info("number of contacts after remove is" + after);
+        return before-after;
+    }
+
+    private void removeContact() {
+        click(By.cssSelector(".contact-item_card__2SOIM"));
+        click(By.xpath("//button[text() = 'Remove']"));
+        pause(2000);
+    }
+
+    private int countOfContacts() {
+        return wd.findElements(By.cssSelector(".contact-item_card__2SOIM")).size();
+    }
 }
