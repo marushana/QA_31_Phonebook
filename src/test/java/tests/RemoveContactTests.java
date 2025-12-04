@@ -25,6 +25,7 @@ public class RemoveContactTests extends TestBase{
 
     @Test
     public void removeAllContacts(){
+
         //assert no contacts here
     }
 }
