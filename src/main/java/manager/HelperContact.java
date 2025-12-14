@@ -1,6 +1,7 @@
 package manager;
 
 import models.Contact;
+import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Random;
 
 public class HelperContact extends HelperBase{
 
@@ -83,5 +85,38 @@ public class HelperContact extends HelperBase{
 
     private int countOfContacts() {
         return wd.findElements(By.cssSelector(".contact-item_card__2SOIM")).size();
+    }
+
+    public void removeAllContacts() {
+        while (countOfContacts()!=0){
+            removeOneContact();
+        }
+    }
+
+    public void provideContacts() {
+        if(countOfContacts()<3){
+            for (int i = 0; i < 3; i++) {
+                addOneContact();
+            }
+
+        }
+    }
+
+    private void addOneContact() {
+        int i = new Random().nextInt(1000)+1000;
+
+        Contact contact = Contact.builder()
+                .name("Ivan")
+                .lastName("Potter")
+                .phone("55566777"+i)
+                .email("harra"+i+"@gmail.com")
+                .address("Hogvards")
+                .description("Friends")
+                .build();
+
+        openContactForm();
+        fillContactForm(contact);
+        submitContactForm();
+        pause(1000);
     }
 }

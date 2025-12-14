@@ -15,7 +15,7 @@ public class RemoveContactTests extends TestBase{
             app.getHelperUser().login(new User().withEmail("marushana@yandex.ru").withPassword("Pokrov1304!"));
         }
 
-        //app.getHelperContact().provideContacts();//if contact list less then 3 >>add 3
+        app.getHelperContact().provideContacts();//if contact list less then 3 >>add 3
         }
     @Test
     public void removeFirstContact(){
@@ -25,7 +25,8 @@ public class RemoveContactTests extends TestBase{
 
     @Test
     public void removeAllContacts(){
-
+        app.getHelperContact().removeAllContacts();
+        Assert.assertTrue(app.getHelperContact().isNoContactsHereDisplayed());
         //assert no contacts here
     }
 }
