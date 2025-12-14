@@ -20,12 +20,16 @@ public class HelperUser extends HelperBase{
 //        WebElement loginTab = wd.findElement(By.xpath("//*[text() = 'LOGIN']"));
 //        loginTab.click();
         click(By.xpath("//*[text() = 'LOGIN']"));
+        logger.info("open form by click on button with locator By.xpath(\"//*[text() = 'LOGIN']\")");
 
     }
 
     public void fillLoginRegistrationForm(String email, String password){
         type(By.xpath("//input[@placeholder = 'Email']"), email);
         type(By.xpath("//input[@placeholder = 'Password']"), password);
+        //type(By.xpath("//input[@placeholder = 'Pass']"), password);
+        logger.info("type into input email by locator By.xpath(\"//input[@placeholder = 'Email']\")");
+        logger.info("type into input email by locator By.xpath(\"//input[@placeholder = 'Password']\")");
 //        WebElement inputEmail = wd.findElement(By.xpath("//input[@placeholder = 'Email']"));
 //        inputEmail.click();
 //        inputEmail.clear();
