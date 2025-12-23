@@ -2,7 +2,13 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
 
 public class LoginTests extends TestBase {
 
@@ -15,12 +21,23 @@ public class LoginTests extends TestBase {
         }
     }
 
-    @Test
-    public void loginSuccess() {
+    @DataProvider
+    public Iterator<Object[]> loginData(){
+        List<Object[]> list = new ArrayList<>();
+        list.add(new Object[]{"marushana@yandex.ru","Pokrov1304!"});
+        list.add(new Object[]{"sonya@gmail.com","Ss12345$"});
+        list.add(new Object[]{"marushana@yandex.ru","Pokrov1304!"});
+        list.add(new Object[]{"marushana@yandex.ru","Pokrov1304!"});
+        list.add(new Object[]{"marushana@yandex.ru","Pokrov1304!"});
+        return list.iterator();
+    }
+
+    @Test(dataProvider = "loginData")
+    public void loginSuccess(String email, String password) {
         logger.info("Start test with name 'Login Success'");
-        logger.info("Test data --->> email: 'marushana@yandex.ru' & password: 'Pokrov1304!'");
+        logger.info("Test data --->> email: "+email+", password: "+password);
         app.getHelperUser().openLoginRegistrationForm();
-        app.getHelperUser().fillLoginRegistrationForm("marushana@yandex.ru", "Pokrov1304!");
+        app.getHelperUser().fillLoginRegistrationForm(email, password);
         app.getHelperUser().submitLogin();
 
 //        Assert.assertEquals();
