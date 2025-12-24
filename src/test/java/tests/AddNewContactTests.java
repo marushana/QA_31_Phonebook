@@ -1,5 +1,6 @@
 package tests;
 
+import manager.DataProviderContacts;
 import models.Contact;
 import models.User;
 import org.testng.Assert;
@@ -19,7 +20,7 @@ public class AddNewContactTests extends TestBase{
         }
     }
 
-    @Test
+    @Test(dataProvider = "contactSuccess", dataProviderClass = DataProviderContacts.class)
     public void addNewContactSuccessAllFields(){
         int i = new Random().nextInt(1000)+1000;
         Contact contact1 = Contact.builder().name("Marina"+i).lastName("Siachin").phone("0538535553"+i).email("marusha"+i+"@list.ru").address("Haifa, Alexander Yannay, 28, 2").description("hdkhkhk mom").build();
